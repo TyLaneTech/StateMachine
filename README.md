@@ -10,7 +10,6 @@ II. HOW DOES IT WORK?
 First we need to define a dictionary called 'handlers' which will hold the various states, and references to their associated transition functions. Next we define a variable called 'startState' which will indicate the initial state of the machine. Finally we define a list object called 'endStates' which contains the names of the various end states. Shown below:
 
 											   ###Containers###
-
 		handlers = {}
 		startState = None
 		endStates = []
@@ -20,7 +19,6 @@ Next we need to call the 'addState' function which takes the following arguement
 Additionally the 'setStart' function sets the 'startState' variable to the name of the defined starting state (in this case "Start"). Shown below:
 
 										  ###Creating State Instances###
-
 		addState("Start", startTransition)
 		addState("isState", isStateTransition)
 		addState("positiveState", None, endState=True)
@@ -30,7 +28,6 @@ Additionally the 'setStart' function sets the 'startState' variable to the name 
 Below are the 'addState' and 'setStart' functions, which are called, and given arguments from the lines above:
 
 										   ###State Creation Methods###
-
 		def addState(self, name, handler, endState=False):
 			name = name.upper()
 			self.handlers[name] = handler
@@ -43,16 +40,14 @@ Below are the 'addState' and 'setStart' functions, which are called, and given a
 		
 To run the state machine created above, the 'run' method must be called (shown below). The 'sentence' argument being passed contains the phrase "AI is" concatenated with the user's input (for this example we'll assume the user's input is "neat"). So the full sentence passed to the 'run' method is: "AI is neat".
 	
-										 ###Calling The 'run' Method###
-										
+										 ###Calling The 'run' Method###		
 		run(sentence)
 
 
 The 'run' method (shown below) takes the sentence described above as an argument. From this point on, the sentence above will be refered to as 'userInput'.
 In line 57 of the 'run' function below, the function associated with the 'startState' is called ('startTransition'), and the 'userInput' is passed as an argument. 
 
-											 ###The 'run' Method###
-												
+											 ###The 'run' Method###			
 		def run(self, userInput):
 			handler = self.handlers[self.startState]
 			while True:
@@ -70,8 +65,7 @@ In line 57 of the 'run' function below, the function associated with the 'startS
 At this point the user input is "AI is neat". Inside the transition function below the first word of 'userInput' is evaluated ("AI"), and based on the evaluated word the new state's name ('aiState') is assigned to the variable 'newState'. 
 The remainder of the user input ("is neat"), along with the 'newState' variable ('aiState') are returned back to the 'run' method as 'newState' and 'txt'. 
 		
-											###Transition Function###
-											
+											###Transition Function###			
 		def startTransition(txt):
 			splitText = txt.split(None,1)
 			word, txt = splitText if len(splitText) > 1 else (txt,"")
