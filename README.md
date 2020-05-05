@@ -49,22 +49,22 @@ To run the state machine created above, the 'run' method must be called (shown b
 
 
 The 'run' method (shown below) takes the sentence described above as an argument. From this point on, the sentence above will be refered to as 'userInput'.
-In line 2 of the 'run' function below, the function associated with the 'startState' is called ('startTransition'), and the 'userInput' is passed as an argument. 
+In line 57 of the 'run' function below, the function associated with the 'startState' is called ('startTransition'), and the 'userInput' is passed as an argument. 
 
 											 ###The 'run' Method###
 												
-1		def run(self, userInput):
-2			handler = self.handlers[self.startState]
-3			while True:
-4				(newState, userInput) = handler(userInput)
-5				if newState.upper() in self.endStates:
-6					if newState == "errorState":
-7						print("Arrived at", newState, "(Unknown Adjective)")
-8					if newState != "errorState":
-9						print("Arrived at", newState)
-10					break 
-11				else:
-12					handler = self.handlers[newState.upper()]
+		def run(self, userInput):
+			handler = self.handlers[self.startState]
+			while True:
+				(newState, userInput) = handler(userInput)
+				if newState.upper() in self.endStates:
+					if newState == "errorState":
+						print("Arrived at", newState, "(Unknown Adjective)")
+					if newState != "errorState":
+						print("Arrived at", newState)
+					break 
+				else:
+					handler = self.handlers[newState.upper()]
 
 
 At this point the user input is "AI is neat". Inside the transition function below the first word of 'userInput' is evaluated ("AI"), and based on the evaluated word the new state's name ('aiState') is assigned to the variable 'newState'. 
@@ -83,7 +83,7 @@ The remainder of the user input ("is neat"), along with the 'newState' variable 
 			return (newState, txt)
 			
 			
-Once 'newState' and 'txt' are returned to the 'run' method, the transition function associated with 'aiState' is called (line 4 of the 'run' method), and the user input "is neat" (returned from the transition function above) is passed to the next transition function ('aiStateTransition') where the process continues to repeat until all the words in the user's input are evaluated, or an end state is reached.
+Once 'newState' and 'txt' are returned to the 'run' method, the transition function associated with 'aiState' is called (line 59 of the 'run' method), and the user input "is neat" (returned from the transition function above) is passed to the next transition function ('aiStateTransition') where the process continues to repeat until all the words in the user's input are evaluated, or an end state is reached.
 
 
 
