@@ -164,7 +164,7 @@ if __name__== "__main__":
 		usrInput = input("I think AI is ")
 		print("")
 		if info == True: print("Information:")
-		sentence = "AI is " + usrInput
+		sentence = "AI is " + str(usrInput.lower())
 
 #Calls the function that initiates the state traversal sequence, with the sentence containing the user's input.
 		m.run(str(sentence))	
